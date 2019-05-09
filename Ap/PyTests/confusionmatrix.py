@@ -1,0 +1,18 @@
+import pandas
+archivo="iris.data"
+columnas=['longitud-sépalo', 'ancho-sépalo', 'longitud-pétalo', 'ancho-pétalo', 'clase']
+conjunto_de_datos = pandas.read_csv(archivo, names=columnas)
+X = conjunto_de_datos.iloc[:,0:4].values
+y = conjunto_de_datos.iloc[:,4].values
+print(X)
+print(y)
+
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+gnb = GaussianNB()
+modelo = gnb.fit(X, y)
+y_predecido = modelo.predict(X)
+print(accuracy_score(y, y_predecido))
+print(confusion_matrix(y, y_predecido))
+
